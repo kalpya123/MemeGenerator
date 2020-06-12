@@ -1,0 +1,82 @@
+import React,{Component} from 'react';
+
+
+//import './App.css';
+
+class App extends Component {
+  constructor() {
+      super()
+      this.state = {
+       firstname:"",
+       lastname:"",
+       isFriendly:false,
+       gender:""
+      }
+   this.handleChange= this.handleChange.bind(this)   
+  
+    }
+    handleChange(event) {
+      const {name, value, type, checked} = event.target
+      type === "checkbox" ? this.setState({ [name]: checked }) : this.setState({ [name]: value })
+
+    
+
+      
+    }
+  
+  
+  render() {
+      return (
+
+      <form>
+        <input type="text" placeholder="first name here" name="firstname" onChange={this.handleChange} />
+        <br/>
+        <input type="text" placeholder="last name here" name="lastname" onChange={this.handleChange} />
+       
+      {this.state.firstname}
+      <br/>
+      
+      {this.state.lastname}
+     <br/>
+     
+ 
+      <textarea value={"Some default value"}/>
+                <br />
+                <label>
+                    <input 
+                        type="checkbox" 
+                        name="isFriendly"
+                        checked={this.state.isFriendly}
+                        onChange={this.handleChange}
+                    /> Is friendly?
+                </label>
+                
+     <br/>
+     <label>
+                    <input 
+                        type="radio" 
+                        name="gender"
+                        value="male"
+                        checked={this.state.gender === "male"}
+                        onChange={this.handleChange}
+                    /> Male
+                </label>
+                <br />
+                <label>
+                    <input 
+                        type="radio" 
+                        name="gender"
+                        value="female"
+                        checked={this.state.gender === "female"}
+                        onChange={this.handleChange}
+                    /> Female
+                </label>
+      <h2>you are a {this.state.gender
+      }</h2>
+
+      </form>
+      )
+}
+}
+
+export default App
